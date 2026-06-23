@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Musiqati - Home</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* ==========================================================================
+           إجبار الصفحة وعناصرها الرئيسية على الاتجاه اليساري وإلغاء أي تعارض
+           ========================================================================== */
+        html, body {
+            direction: ltr !important;
+            text-align: left !important;
+        }
+        
+        .nav-bar ul, .top-bar, .user-actions {
+            direction: ltr !important;
+            flex-direction: row !important;
+        }
+
+        main, section, div, p, h1, h2, h3 {
+            text-align: left !important;
+        }
+
+        /* حماية الشعار الأسود فوق الهيدر في الوضع الداكن */
+        body.dark-mode .main-logo {
+            filter: invert(1) brightness(2);
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="top-bar">
+            <div class="user-actions">
+               
+                
+            </div>            
+            <div class="logo-container">
+                <a href="homepage.en.html">
+                    <img src="الشعار-removebg-preview.png" alt="Musiqati Logo" class="main-logo">
+                </a>
+            </div>
+        </div>
+
+        <nav class="nav-bar">
+            <ul>
+                <li><a href="homepage.en.html" class="active-link"><i class="fa-solid fa-house"></i> Home</a></li>
+                <li><a href="storepage.en.html">Store</a></li>
+                <li><a href="gifts.en.html">Gifts</a></li>
+                <li><a href="offers.en.html">Special Offers</a></li>
+                <li><a href="about.en.html">About Us</a></li>
+                <li><a href="contact.en.html">Contact Us</a></li>
+                <li><a href="accessibility.en.html"><i class="fa-solid fa-universal-access"></i> Accessibility</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="hero-wrapper">
+        <section class="hero-section">
+            <div class="hero-card">
+                
+                <div class="hero-image-container">
+                    <img src="الصورة بوسط الصفحة الرئيسية .png" alt="Musical Instruments" class="hero-image">
+                </div>
+
+                <div class="hero-content">
+                    <p class="hero-text">
+                        Explore our wide range of authentic musical instruments, from Ouds to Guitars and everything in between. Enjoy a unique shopping experience with our special offers and the best customer service in Jordan.
+                    </p>
+                    <a href="storepage-en.html" class="explore-btn">Start Exploring</a>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+   <footer class="main-footer">
+        <div class="footer-container">
+            
+            <div class="footer-section contact-section">
+                <h3>Contact Us:</h3>
+                <div class="contact-item">
+                    <i class="fa-solid fa-phone"></i>
+                    <span>+962 6 555 1234</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fa-solid fa-mobile-screen-button"></i>
+                    <span>+962 79 7370514</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fa-solid fa-envelope"></i>
+                    <span>info@musiqati.jo</span>
+                </div>
+            </div>
+
+            <div class="footer-section follow-section">
+                <h3>Follow Us:</h3>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/share/14dfKyEsQWg/" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/mosiqati_?igsh=MWhpMm95YjAwc2gzOA==" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://youtube.com/@mosiqati-hk1kc?si=EqwQyf98RR30Ucf0" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+
+        </div>
+        
+        <div class="copyright-container">
+            <p class="copyright-text">All Rights Reserved to Musiqati Store © 2026</p>
+        </div>
+    </footer>
+<script src="script.js"></script>
+</body>
+</html>

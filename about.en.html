@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Musiqati Store - About Us</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* ==========================================================================
+           كود حماية وتثبيت الاتجاه المصلح لمنع التعارض مع ملف style.css الإجباري
+           ========================================================================== */
+        html, body {
+            direction: ltr !important;
+            text-align: left !important;
+        }
+        .nav-bar ul, .top-bar, .user-actions {
+            direction: ltr !important;
+            flex-direction: row !important;
+        }
+        main, section, div, p, h1, h2, h4 {
+            text-align: left !important;
+        }
+
+        /* تثبيت عناوين الكروت (Mission & Vision) في المنتصف تماماً مع الخط السفلي */
+        .custom-cards-section-clean .info-card h3 {
+            text-align: center !important;
+            display: block !important;
+            width: 100% !important;
+            text-decoration: underline !important;
+        }
+        /* مخصص لجعل أسماء الأعضاء ووظائفهم في المنتصف */
+.team-member h4, .team-member p {
+    text-align: center !important;
+    
+        
+}
+
+        /* ==========================================================================
+           Additional isolated styling for dark mode without altering the layout structure
+           ========================================================================== */
+
+        /* 1. Fix text visibility for "Vision & Mission" title in Dark Mode */
+        body.dark-mode .vision-mission-title {
+            color: #ffffff !important;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        /* 2. Fix text visibility for "Our Story" section by shifting to crisp ivory whites */
+        body.dark-mode .story-section .story-text h2 {
+            color: #ffffff !important;
+        }
+        body.dark-mode .story-section .story-text p {
+            color: #ebdcc9 !important;
+        }
+
+        /* 3. Ensure the black logo updates nicely and remains visible in Dark Mode */
+        body.dark-mode .main-logo {
+            filter: invert(1) brightness(2);
+        }
+
+        /* 4. Safeguard team member cards to prevent white-on-white text blending */
+        body.dark-mode .team-member {
+            background-color: #e4d3b7 !important;
+            border: 1px solid #ebdcc9 !important;
+        }
+        body.dark-mode .team-member h4 {
+            color: #1a1613 !important; /* Fixed readable deep dark text */
+        }
+        body.dark-mode .team-member p {
+            color: #8c6f55 !important; /* Balanced brown tone for job titles */
+        }
+
+        /* ==========================================================================
+           Final Fix: Ensure the card container remains fully transparent without structural block borders
+           ========================================================================== */
+        
+        .custom-cards-section-clean {
+            display: flex !important;
+            justify-content: center !important;
+            gap: 30px !important;
+            padding: 40px 20px !important;
+            
+            /* Remove all backgrounds to avoid any block containers showing behind */
+            background: transparent !important; 
+            background-color: transparent !important;
+            background-image: none !important;
+            
+            /* Clean up overlapping borders or styling shadows */
+            box-shadow: none !important;
+            border: none !important;
+            outline: none !important;
+        }
+
+        /* Support basic card elements and smooth hover animations */
+        .custom-cards-section-clean .info-card {
+            flex: 1 !important;
+            max-width: 500px !important;
+            position: relative !important;
+            transition: all 0.3s ease-in-out !important;
+        }
+
+        /* On Hover: Gently lift the targeted card individually */
+        .custom-cards-section-clean .info-card:hover {
+            transform: translateY(-5px) !important;
+        }
+
+        /* Erase any residual pseudo-elements */
+        .custom-cards-section-clean::before,
+        .custom-cards-section-clean::after {
+            display: none !important;
+            content: none !important;
+        }
+        /* ==========================================================================
+   خاصية الهوفر التفاعلية والتوهج المضيء للمربعات الحاضنة للصور بالكامل
+   ========================================================================== */
+
+/* التنسيق الافتراضي للمربعات وتهيئتها للحركة السلسة */
+.story-image-box,
+.member-img-box {
+    border: 2px solid transparent;
+    border-radius: 12px; /* حواف دائرية جميلة للمربع بالكامل */
+    padding: 6px; /* مسافة داخلية صغيرة لإعطاء مدى للتوهج والحواف */
+    transition: all 0.4s ease-in-out !important;
+    background-color: transparent;
+}
+
+/* تأثير مرور الماوس (Hover) على المربع في الوضع الفاتح الافتراضي */
+.story-image-box:hover,
+.member-img-box:hover {
+    transform: translateY(-5px) !important; /* رفع المربع بالكامل بشكل تفاعلي سلس */
+    border-color: #8c6f55 !important; /* حواف ملونة بلون الهوية البني الدافئ */
+    box-shadow: 0 10px 25px rgba(140, 111, 85, 0.3), 
+                0 0 15px rgba(140, 111, 85, 0.2) !important; /* توهج خارجي مضيء ومتناسق */
+}
+
+/* تأثير مرور الماوس (Hover) مخصص للوضع الداكن (Dark Mode) */
+body.dark-mode .story-image-box:hover,
+body.dark-mode .member-img-box:hover {
+    border-color: #ebdcc9 !important; /* حواف بيج عاجية مضيئة تناسب التصميم الداكن */
+    box-shadow: 0 10px 30px rgba(235, 220, 201, 0.4), 
+                0 0 20px rgba(235, 220, 201, 0.3) !important; /* توهج ناعم فخم يضيء المربع في الظلام */
+}
+
+/* لضمان تناسق الصورة الداخلية وعدم خروجها عن حواف المربع المضيء */
+.story-image-box img,
+.member-img-box img {
+    border-radius: 8px !important;
+    display: block;
+    width: 100%;
+    height: auto;
+}
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="top-bar">
+            <div class="user-actions">
+            </div>
+
+            <div class="search-container-spacer"></div>
+
+            <div class="logo-container">
+                <a href="homepage.en.html">
+                    <img src="الشعار-removebg-preview.png" alt="Musiqati Logo" class="main-logo">
+                </a>
+            </div>
+        </div>
+
+        <nav class="nav-bar">
+            <ul>
+                <li><a href="homepage.en.html"><i class="fa-solid fa-house"></i> Home</a></li>
+                <li><a href="storepage.en.html">Store</a></li>
+                <li><a href="gifts.en.html">Gifts</a></li>
+                <li><a href="offers.en.html">Special Offers</a></li>
+                <li><a href="" class="active-link">About Us</a></li>
+                <li><a href="contact.en.html">Contact Us</a></li>
+                <li><a href="accessibility.en.html"><i class="fa-universal-access fa-solid"></i> Accessibility</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="about-container">
+        
+        <section class="about-hero">
+            <h1>Musiqati... Your melody starts here, where passion for music unites us across Jordan</h1>
+        </section>
+
+        <section class="story-section">
+            <div class="story-text">
+                <h2>Our Founding Story: From the Heart of Jordanian Passion</h2>
+                <p>The journey of (Musiqati) began with a profound love for music, born out of a noticeable gap where aspiring and professional artists in Jordan struggled to source authentic, premium-quality musical instruments at fair prices, alongside a lack of expert technical guidance.</p>
+                <p>Driven by this purpose, we launched an integrated digital platform in 2024 to curate the world’s best instruments and accessories, ensuring they are securely delivered right to your doorstep anywhere in the Kingdom, serving as your companion for every note you play.</p>
+            </div>
+            <div class="story-image-box">
+                <img src="صورة وسط الصفحة.png" alt="Music passion in Jordan">
+            </div>
+        </section>
+
+        <div class="vision-mission-title">
+            Vision & Mission: Our Commitment to Our Musicians
+        </div>
+
+        <section class="custom-cards-section-clean">
+            <div class="info-card">
+                <h3>Mission</h3>
+                <p>To provide excellent musical instruments paired with comprehensive support for every Jordanian musician, enriching and cultivating the musical culture across the Kingdom.</p>
+            </div>
+            <div class="info-card">
+                <h3>Vision</h3>
+                <p>To become the premier and standard destination for all music enthusiasts in the Kingdom—both hobbyists and seasoned professionals alike.</p>
+            </div>
+        </section>
+
+        <section class="team-section">
+            <h2 class="team-title">Musiqati Store Team</h2>
+            <div class="team-grid">
+                
+                <div class="team-member">
+                    <div class="member-img-box">
+                        <img src="رشيد قشوع.png" alt="Rasheed Qashou">
+                    </div>
+                    <h4>Rasheed Qashou</h4>
+                    <p>Founder of Musiqati</p>
+                </div>
+
+                <div class="team-member">
+                    <div class="member-img-box">
+                        <img src="فاطمة عبدالله.png" alt="Fatima Abdullah">
+                    </div>
+                    <h4>Fatima Abdullah</h4>
+                    <p>Technical Support Specialist</p>
+                </div>
+
+                <div class="team-member">
+                    <div class="member-img-box">
+                        <img src="أحمد الكركي.png" alt="Ahmad Al-Karaki">
+                    </div>
+                    <h4>Ahmad Al-Karaki</h4>
+                    <p>Quality Control & Maintenance Manager</p>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            
+            <div class="footer-section contact-section">
+                <h3>Contact Us:</h3>
+                <div class="contact-item">
+                    <i class="fa-solid fa-phone"></i>
+                    <span>+962 6 555 1234</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fa-solid fa-mobile-screen-button"></i>
+                    <span>+962 79 7370514</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fa-solid fa-envelope"></i>
+                    <span>info@musiqati.jo</span>
+                </div>
+            </div>
+
+            <div class="footer-section follow-section">
+                <h3>Follow us:</h3>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/share/14dfKyEsQWg/" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/mosiqati_?igsh=MWhpMm95YjAwc2gzOA==" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://youtube.com/@mosiqati-hk1kc?si=EqwQyf98RR30Ucf0" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+
+        </div>
+        
+        <div class="copyright-container">
+            <p class="copyright-text">All Rights Reserved to Musiqati Store © 2026</p>
+        </div>
+    </footer>
+<script src="script.js"></script>
+</body>
+</html>

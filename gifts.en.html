@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Musiqati Store - Gifts</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        .error-message {
+            display: none;
+            background: #fff3e0;
+            color: #e65100;
+            border: 1px solid #ffb74d;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 14px;
+            margin-top: -5px;
+            margin-bottom: 10px;
+            text-align: left;
+            font-family: 'Cairo', sans-serif;
+            align-items: center;
+        }
+
+        .error-icon-box {
+            display: inline-flex;
+            background: #ff9800;
+            color: #fff;
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+            align-items: center;
+            justify-content: center;
+            margin-right: 8px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .cart-modal form input:focus {
+            outline: none;
+            border-color: #8e6f54 !important;
+            box-shadow: 0 0 8px rgba(142, 111, 84, 0.4) !important;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .cart-modal form input {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            transition: all 0.3s ease-in-out;
+            margin-bottom: 5px !important;
+        }
+
+        .cod-badge {
+            background-color: #fcf8e3;
+            color: #8a6d3b;
+            border: 1px dashed #faebcc;
+            padding: 8px;
+            border-radius: 6px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        /* ==========================================================================
+           Additional safe adjustments for discount badges, titles and dark mode (Gifts LTR)
+           ========================================================================== */
+
+        /* 1. Allow product cards to let the badge overflow safely */
+        .product-card {
+            position: relative !important;
+            overflow: visible !important;
+        }
+
+        /* 2. Re-engineered discount badge for Top-Right corner positioning (LTR) */
+        .discount-badge {
+            position: absolute !important;
+            top: -12px !important;       /* Raised to stand out above the card */
+            right: -12px !important;     /* Shifted to the right corner for English version */
+            left: auto !important;       /* Reset left position */
+            background-color: #e74c3c !important; /* Premium luxury red */
+            color: #ffffff !important;
+            padding: 6px 14px !important;
+            font-size: 0.85rem !important;
+            font-weight: 700 !important;
+            border-radius: 8px !important;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2) !important; /* Elegant shadow depth */
+            z-index: 10 !important;
+            white-space: nowrap !important;
+            
+            /* Badge growth behavior towards the left inside LTR card */
+            width: auto !important; 
+            max-width: 85% !important; 
+            
+            /* Slight elegant tilt to the right side */
+            transform: rotate(4deg) !important; 
+            transform-origin: top right !important; 
+            
+            /* Soft eye-friendly glow effect */
+            box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.15), 0 0 6px rgba(231, 76, 60, 0.4) !important;
+            
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+        }
+
+        /* 3. Fix visibility of the welcome title in Dark Mode */
+        body.dark-mode .gifts-welcome-title {
+            color: #ffffff !important;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        /* 4. Ensure the main logo looks professional and bright in Dark Mode */
+        body.dark-mode .main-logo {
+            filter: invert(1) brightness(2);
+        }
+
+        /* 5. Golden tweak: Fix cart icon color inside action buttons in Dark Mode */
+        body.dark-mode .add-to-cart-btn .btn-cart-icon,
+        body.dark-mode .super-add-to-cart-btn .btn-cart-icon {
+            color: #000000 !important;
+            opacity: 1 !important;
+        }
+
+        /* Protect product image to remain behind the discount badge without overlap distortion */
+        .product-card img, .product-image {
+            z-index: 1 !important;
+            position: relative !important;
+        }
+
+        /* Keep the badge text crisp and glowing softly in Dark Mode */
+        body.dark-mode .discount-badge {
+            background-color: #e74c3c !important;
+            color: #ffffff !important;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.4), 0 0 8px rgba(231, 76, 60, 0.5) !important;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="top-bar">
+            <div class="user-actions">
+                <div class="cart-btn" onclick="openCart()" style="cursor: pointer;">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span>Cart</span>
+                    <span id="cart-count">0</span>
+                </div>
+            </div>
+
+            <div class="search-container">
+                <input type="text" id="search-input" placeholder="Search for your musical gift...">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            </div>
+
+            <div class="logo-container">
+                <a href="homepage.en.html">
+                    <img src="الشعار-removebg-preview.png" alt="Musiqati Logo" class="main-logo">
+                </a>
+            </div>
+        </div>
+
+        <nav class="nav-bar">
+            <ul>
+                <li><a href="homepage.en.html"><i class="fa-solid fa-house"></i> Home</a></li>
+                <li><a href="storepage.en.html">Store</a></li>
+                <li><a href="#" class="active-link">Gifts</a></li>
+                <li><a href="offers.en.html">Special Offers</a></li>
+                <li><a href="about.en.html">About Us</a></li>
+                <li><a href="contact.en.html">Contact Us</a></li>
+                <li><a href="accessibility.en.html"><i class="fa-solid fa-universal-access"></i> Accessibility</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="gifts-welcome-title">
+        Gifts are Unforgettable Melodies of Love 🎁
+    </div>
+
+    <main class="products-container">
+        <div class="product-card">
+            <span class="discount-badge">25% OFF</span>
+            <h3 class="product-title">Oud Lessons Voucher</h3>
+            <div class="price-wrapper" style="margin-bottom: 10px;">
+                <span class="old-price" style="text-decoration: line-through; color: #888; margin-right: 10px;">65 JD</span>
+                <span class="product-price" style="font-weight: bold; color: #ff6b00;">48 JD</span>
+            </div>
+            <div class="product-img-box"><img src="كوبون دروس عود.png" alt="Oud Lessons Voucher"></div>
+            <button class="add-to-cart-btn" onclick="addToCart('Oud Lessons Voucher', 48, 'كوبون دروس عود.png')">
+                <i class="fa-solid fa-cart-shopping btn-cart-icon"></i> <span>Add to Cart</span>
+            </button>
+        </div>
+
+        <div class="product-card">
+            <h3 class="product-title">Music Education Books Set</h3>
+            <p class="product-price">35 JD</p>
+            <div class="product-img-box"><img src="مجموعة كتب تعليم موسيقية .png" alt="Music Education Books Set"></div>
+            <button class="add-to-cart-btn" onclick="addToCart('Music Education Books Set', 35, 'مجموعة كتب تعليم موسيقية .png')">
+                <i class="fa-solid fa-cart-shopping btn-cart-icon"></i> <span>Add to Cart</span>
+            </button>
+        </div>
+
+        <div class="product-card">
+            <h3 class="product-title">Classical Guitar Strings Set</h3>
+            <p class="product-price">15 JD</p>
+            <div class="product-img-box"><img src="طقم اسلاك جيتار كلاسيكي.png" alt="Classical Guitar Strings Set"></div>
+            <button class="add-to-cart-btn" onclick="addToCart('Classical Guitar Strings Set', 15, 'طقم اسلاك جيتار كلاسيكي.png')">
+                <i class="fa-solid fa-cart-shopping btn-cart-icon"></i> <span>Add to Cart</span>
+            </button>
+        </div>
+
+        <div class="product-card">
+            <h3 class="product-title">Padded Oud Case (Premium)</h3>
+            <p class="product-price">85 JD</p>
+            <div class="product-img-box"><img src="حقيبة مبطنة للعود (فاخرة).png" alt="Padded Oud Case (Premium)"></div>
+            <button class="add-to-cart-btn" onclick="addToCart('Padded Oud Case (Premium)', 85, 'حقيبة مبطنة للعود (فاخرة).png')">
+                <i class="fa-solid fa-cart-shopping btn-cart-icon"></i> <span>Add to Cart</span>
+            </button>
+        </div>
+
+        <div class="product-card">
+            <h3 class="product-title">Strings Accessories Kit</h3>
+            <p class="product-price">42 JD</p>
+            <div class="product-img-box"><img src="مجموعة اكسسورات للاوتار.png" alt="Strings Accessories Kit"></div>
+            <button class="add-to-cart-btn" onclick="addToCart('Strings Accessories Kit', 42, 'مجموعة اكسسورات للاوتار.png')">
+                <i class="fa-solid fa-cart-shopping btn-cart-icon"></i> <span>Add to Cart</span>
+            </button>
+        </div>
+
+        <div class="product-card">
+            <h3 class="product-title">Precision Instrument Tuner</h3>
+            <p class="product-price">28 JD</p>
+            <div class="product-img-box"><img src="مصحح دقيق لنغمة الالة.png" alt="Precision Instrument Tuner"></div>
+            <button class="add-to-cart-btn" onclick="addToCart('Precision Instrument Tuner', 28, 'مصحح دقيق لنغمة الالة.png')">
+                <i class="fa-solid fa-cart-shopping btn-cart-icon"></i> <span>Add to Cart</span>
+            </button>
+        </div>
+
+        <div class="product-card">
+            <span class="discount-badge">5% OFF</span>
+            <h3 class="product-title">Studio Recording Voucher (Single Session)</h3>
+            <div class="price-wrapper" style="margin-bottom: 10px;">
+                <span class="old-price" style="text-decoration: line-through; color: #888; margin-right: 10px;">100 JD</span>
+                <span class="product-price" style="font-weight: bold; color: #ff6b00;">95 JD</span>
+            </div>
+            <div class="product-img-box"><img src="كوبون تسجيل استديو.png" alt="Studio Recording Voucher"></div>
+            <button class="add-to-cart-btn" onclick="addToCart('Studio Recording Voucher', 95, 'كوبون تسجيل استديو.png')">
+                <i class="fa-solid fa-cart-shopping btn-cart-icon"></i> <span>Add to Cart</span>
+            </button>
+        </div>
+
+        <div class="product-card">
+            <h3 class="product-title">Custom Instrument Stand</h3>
+            <p class="product-price">43 JD</p>
+            <div class="product-img-box"><img src="حامل الات مخصص.png" alt="Custom Instrument Stand"></div>
+            <button class="add-to-cart-btn" onclick="addToCart('Custom Instrument Stand', 43, 'حامل الات مخصص.png')">
+                <i class="fa-solid fa-cart-shopping btn-cart-icon"></i> <span>Add to Cart</span>
+            </button>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-section contact-section">
+                <h3>Contact Us:</h3>
+                <div class="contact-item"><i class="fa-solid fa-phone"></i> <span>+962 6 555 1234</span></div>
+                <div class="contact-item"><i class="fa-solid fa-mobile-screen-button"></i> <span>+962 79 7370514</span></div>
+                <div class="contact-item"><i class="fa-solid fa-envelope"></i> <span>info@musiqati.jo</span></div>
+            </div>
+            <div class="footer-section follow-section">
+                <h3>Follow us:</h3>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/share/14dfKyEsQWg/" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/mosiqati_?igsh=MWhpMm95YjAwc2gzOA==" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://youtube.com/@mosiqati-hk1kc?si=EqwQyf98RR30Ucf0" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright-container">
+            <p class="copyright-text">All Rights Reserved to Musiqati Store © 2026</p>
+        </div>
+    </footer>
+
+    <div id="cart-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:9999; align-items:center; justify-content:center;">
+        <div class="cart-modal" style="background:#fff; padding:20px; border-radius:15px; width:90%; max-width:500px; text-align:center; position:relative; max-height:80vh; overflow-y:auto;">
+            
+            <div id="cart-content-area" style="display:block;">
+                <button onclick="document.getElementById('cart-modal').style.display='none'; document.body.style.overflow='auto';" style="float:right; cursor:pointer; background:none; border:none; font-size:24px;">✖</button>
+                <h2 id="modal-title" style="text-align: left; margin-bottom: 20px;">Shopping Cart</h2>
+                <div id="cart-items" style="text-align:left;"></div>
+                <div style="margin:20px 0; font-weight:bold; text-align: center;">
+                    <span>Total Amount:</span> <span id="total-price">0 JD</span>
+                </div>
+                
+                <div id="error-empty-cart" class="error-message" style="margin-bottom: 15px;">
+                    <span class="error-icon-box">!</span><span>Our wonderful customer! You must add products to the cart before confirming your order.</span>
+                </div>
+                
+               <button id="checkout-btn" onclick="showCheckout()" style="width:100%; padding:10px; background:#8e6f54; color:#fff; border:none; border-radius:8px; cursor:pointer;">Checkout Order</button>
+            </div>
+
+            <form id="checkout-form" style="display:none; text-align:left;" onsubmit="confirmOrder(event)" novalidate>
+                <button type="button" onclick="backToCart()" style="float:left; cursor:pointer; background:none; border:none; font-size:20px; padding: 0; margin-bottom: 10px;">
+                    <i class="fa-solid fa-arrow-left"></i>
+                </button>
+                <h3 style="clear:both; margin-bottom: 5px;">Delivery Information</h3>
+                
+                <div class="cod-badge">
+                    <i class="fa-solid fa-hand-holding-dollar"></i> Available Payment Method: Cash on Delivery Only
+                </div>
+                
+                <input type="text" id="cust-name" placeholder="Full Name" style="width:100%; padding:10px;">
+                <div id="error-name" class="error-message">
+                    <span class="error-icon-box">!</span><span>Please fill out this field.</span>
+                </div>
+
+                <input type="tel" id="cust-phone" placeholder="Phone Number (+962...)" style="width:100%; padding:10px;">
+                <div id="error-phone" class="error-message">
+                    <span class="error-icon-box">!</span><span>Please fill in all required fields to complete your order!</span>
+                </div>
+
+                <input type="text" id="cust-address" placeholder="Delivery Address" style="width:100%; padding:10px;">
+                <div id="error-address" class="error-message">
+                    <span class="error-icon-box">!</span><span>Please fill out this field.</span>
+                </div>
+
+                <button type="submit" style="width:100%; padding:10px; background:#27ae60; color:#fff; border:none; border-radius:8px; cursor:pointer; font-weight: bold; margin-top: 10px;">
+                    Place Order Now (Cash on Delivery)
+                </button>
+            </form>
+
+            <div id="success-msg" style="display:none; padding:40px 20px;">
+                <div style="font-size: 60px; color: #27ae60; margin-bottom: 20px;"><i class="fa-solid fa-circle-check"></i></div>
+                <h2 style="font-size: 24px; color: #333; font-weight: 700;">Your order has been placed successfully!</h2>
+                <p style="font-size: 18px; color: #000000; margin-top: 5px; margin-bottom: 5px;">It will be shipped immediately.</p>
+                <p style="font-size: 16px; color: #000000; font-weight: 600; margin-bottom: 25px;">Thank you for choosing Musiqati Store 🤎</p>
+                <button onclick="closeAll()" style="width:100%; padding:12px; background:#333; color:#fff; border:none; border-radius:8px; cursor:pointer;">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="cart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

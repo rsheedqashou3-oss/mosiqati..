@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>متجر موسيقاتي - تواصل معنا</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <style>
+        /* تعديل الشعار ليصبح مضيئاً باللون الأبيض في الوضع الداكن للنسخة العربية */
+        body.dark-mode .main-logo {
+            filter: invert(1) brightness(2) !important;
+        }
+    </style>
+
+     <header class="main-header">
+        <div class="top-bar">
+            <div class="user-actions">
+            </div>           
+            <div class="logo-container">
+                <a href="homepage.html">
+                    <img src="الشعار-removebg-preview.png" alt="شعار موسيقاتي" class="main-logo">
+                </a>
+            </div>
+        </div>
+
+            <div class="search-container-spacer"></div>
+
+          
+        <nav class="nav-bar">
+            <ul>
+                <li><a href="homepage.html"><i class="fa-solid fa-house"></i> الصفحة الرئيسية</a></li>
+                <li><a href="storepage.html">المتجر</a></li>
+                <li><a href="gifts.html">الهدايا</a></li>
+                <li><a href="offers.html">العروض الخاصة</a></li>
+                <li><a href="about.html">من نحن</a></li>
+                <li><a href="contact.html" class="active-link">تواصل معنا</a></li>
+                <li><a href="accessibility.html"><i class="fa-solid fa-universal-access"></i> إمكانية الوصول</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="page-title-container">
+        <h1 class="main-page-title">تواصل معنا - نحن هنا لسماعك</h1>
+    </div>
+
+    <main class="contact-wrapper">
+        
+        <section class="form-section">
+            <h2 class="section-heading">نموذج الاتصال التفاعلي</h2>
+            <!-- تم إضافة المعرف id="contactForm" هنا لربطه بالـ JavaScript -->
+            <form id="contactForm" class="interactive-form" action="#" method="POST">
+                <div class="input-group">
+                    <input type="text" placeholder="الإسم الأول" required>
+                </div>
+                <div class="input-group">
+                    <input type="email" placeholder="البريد الإلكتروني" required>
+                </div>
+                <div class="input-group">
+                    <input type="text" placeholder="الموضوع" required>
+                </div>
+                <div class="input-group">
+                    <textarea placeholder="الرسالة" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">إرسال الرسالة</button>
+            </form>
+        </section>
+
+        <section class="info-section">
+
+    <h2 class="section-heading">معلومات الاتصال المباشرة</h2>
+
+    <div class="contact-card">    
+                <div class="info-block">
+                    <h3> رقم الهاتف : </h3>
+                    <div class="info-row">
+                        <i class="fa-solid fa-phone"></i>
+                        <span>   1234 555 6 962+ </span>
+                    </div>
+                    <div class="info-row">
+                        <i class="fa-solid fa-mobile-screen-button"></i>
+                        <span> 7370514 79 962+</span>
+                    </div>
+                </div>
+
+                <div class="info-block">
+                    <h3> البريد الإلكتروني :</h3>
+                    <div class="info-row">
+                        <i class="fa-regular fa-envelope"></i>
+                        <span>info@musiqati.jo</span>
+                    </div>
+                </div>
+
+                <div class="info-block">
+                    <h3> العنوان الفعلي :</h3>
+                    <div class="info-row">
+                        <span>عمان - شارع الملك فيصل الأول - مبنى 20</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="channels-box">
+                <p>تابعنا على قنواتنا الرسمية - موسيقاتي في كل مكان</p>
+                <div class="channels-icons">
+                     <a href="https://www.facebook.com/share/14dfKyEsQWg/" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+                      <a href="https://www.instagram.com/mosiqati_?igsh=MWhpMm95YjAwc2gzOA==" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://youtube.com/@mosiqati-hk1kc?si=EqwQyf98RR30Ucf0" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+                   
+                </div>
+            </div>
+
+            <div class="work-hours-card">
+                <h2 class="card-title">ساعات العمل</h2>
+                <div class="hours-table">
+                    <div class="hours-row">
+                        <span class="days">السبت - الخميس :</span>
+                        <span class="time">9 ص - 10 م</span>
+                    </div>
+                    <div class="hours-row border-top-dark">
+                        <span class="days">الجمعة :</span>
+                        <span class="time">9 ص - 5 م</span>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            
+            <div class="footer-section contact-section">
+                <h3> : Contact Us </h3>
+                <div class="contact-item">
+                    <i class="fa-solid fa-phone"></i>
+                    <span dir="ltr">+962 6 555 1234</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fa-solid fa-mobile-screen-button"></i>
+                     <span dir="ltr"> +962 79 7370514</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fa-solid fa-envelope"></i>
+                    <span>info@musiqati.jo</span>
+                </div>
+            </div>
+
+            <div class="footer-section follow-section">
+                <h3> : Follow us </h3>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/share/14dfKyEsQWg/" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/mosiqati_?igsh=MWhpMm95YjAwc2gzOA==" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://youtube.com/@mosiqati-hk1kc?si=EqwQyf98RR30Ucf0" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+
+        </div>
+        
+        <div class="copyright-container">
+            <p class="copyright-text">جميع الحقوق محفوظة لـ متجر الموسيقاتي © 2026</p>
+        </div>
+    </footer>
+
+    <!-- ================= برمجة النافذة المنبثقة التفاعلية ================= -->
+    <script>
+    document.getElementById('contactForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // منع إعادة تحميل الصفحة الافتراضي
+        
+        // 1. إنشاء الخلفية المظلمة المحيطة بالنافذة
+        const modalOverlay = document.createElement('div');
+        modalOverlay.className = 'custom-modal-overlay';
+        
+        // 2. إنشاء صندوق التنبيه في الوسط
+        const modalBox = document.createElement('div');
+        modalBox.className = 'custom-modal-box';
+        
+        // 3. كتابة محتويات الصندوق (الأيقونة، النصوص، وزر الإغلاق المتفاعل)
+        modalBox.innerHTML = `
+            <div class="modal-icon-wrapper">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <h2 class="modal-title">تم إرسال الرسالة بنجاح</h2>
+            <p class="modal-message">سيتم حل مشكلتك والتواصل معك بأسرع وقت ممكن.</p>
+            <span class="modal-team-signature">فريق الدعم الفني لمتجر موسيقاتي</span>
+            <button class="modal-close-btn">إغلاق</button>
+        `;
+        
+        // دمج الصندوق بالخلفية وثم إضافتهم للصفحة
+        modalOverlay.appendChild(modalBox);
+        document.body.appendChild(modalOverlay);
+        
+        // تفريغ كافة حقول النموذج فوراً ليكون جاهزاً للمرة القادمة
+        this.reset();
+        
+        // 4. برمجة زر الإغلاق عند الضغط عليه
+        modalBox.querySelector('.modal-close-btn').addEventListener('click', function() {
+            // إعطاء تأثير اختفاء ناعم (Fade out)
+            modalOverlay.style.opacity = '0';
+            modalBox.style.transform = 'scale(0.85)';
+            
+            // حذف العناصر من الكود تماماً بعد انتهاء حركة الاختفاء
+            setTimeout(function() {
+                modalOverlay.remove();
+            }, 300);
+        });
+    });
+    </script>
+<script src="script.js"></script>
+</body>
+</html>

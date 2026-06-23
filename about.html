@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>متجر موسيقاتي - من نحن</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* ==========================================================================
+           تنسيقات إضافية معزولة للوضع الداكن دون المساس بالهيكل أو التسبب بأي حذف
+           ========================================================================== */
+
+        /* 1. إصلاح مشكلة اختفاء عنوان ورسائل "رؤيتنا ورسالتنا" في الوضع الداكن */
+        body.dark-mode .vision-mission-title {
+            color: #ffffff !important;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        /* 2. إصلاح مشكلة اختفاء نصوص وعناوين "قصة تأسيسنا" وتحويلها للأبيض العاجي الساطع */
+        body.dark-mode .story-section .story-text h2 {
+            color: #ffffff !important;
+        }
+        body.dark-mode .story-section .story-text p {
+            color: #ebdcc9 !important;
+        }
+
+        /* 3. حل مشكلة اختفاء الشعار الأسود فوق الهيدر عند اختيار الوضع الداكن */
+        body.dark-mode .main-logo {
+            filter: invert(1) brightness(2);
+        }
+
+        /* 4. حماية وتثبيت كروت فريق العمل الممتازة بنصوصها الكاملة لمنع تداخل الأبيض فوق الأبيض */
+        body.dark-mode .team-member {
+            background-color: #e4d3b7 !important;
+            border: 1px solid #ebdcc9 !important;
+            
+        }
+
+        
+        body.dark-mode .team-member h4 {
+            color: #1a1613 !important; /* أسود عميق مقروء وثابت */
+                
+        
+
+        }
+        
+        body.dark-mode .team-member p {
+            color: #8c6f55 !important; /* لون بني متناسق وواضح للمسمى الوظيفي */
+             
+        
+        }
+        
+        /* ==========================================================================
+           الحل النهائي القاطع: حذف وإلغاء المربع الخلفي للقسم تماماً ليصبح شفافاً
+           ========================================================================== */
+        
+        .custom-cards-section-clean {
+            display: flex !important;
+            justify-content: center !important;
+            gap: 30px !important;
+            padding: 40px 20px !important;
+            
+            /* إلغاء الخلفيات والألوان تماماً لمنع ظهور المربع الخلفي */
+            background: transparent !important; 
+            background-color: transparent !important;
+            background-image: none !important;
+            
+            /* إلغاء الظلال والحدود التي قد تصنع شكلاً للمربع الخلفي */
+            box-shadow: none !important;
+            border: none !important;
+            outline: none !important;
+        }
+
+        /* حماية المربعات الأساسية وتأثير الهوفر الخاص بها */
+        .custom-cards-section-clean .info-card {
+            flex: 1 !important;
+            max-width: 500px !important;
+            position: relative !important;
+            transition: all 0.3s ease-in-out !important;
+        }
+
+        /* عند تمرير الماوس: يتغير المربع نفسه ويكبر قليلاً بسلاسة دون وجود أي شيء خلفه */
+        .custom-cards-section-clean .info-card:hover {
+            transform: translateY(-5px) !important;
+        }
+
+        /* إلغاء أي عناصر وهمية نهائياً للقسم الجديد */
+        .custom-cards-section-clean::before,
+        .custom-cards-section-clean::after {
+            display: none !important;
+            content: none !important;
+        }
+               /* ==========================================================================
+   خاصية الهوفر التفاعلية والتوهج المضيء للمربعات الحاضنة للصور بالكامل
+   ========================================================================== */
+
+/* التنسيق الافتراضي للمربعات وتهيئتها للحركة السلسة */
+.story-image-box,
+.member-img-box {
+    border: 2px solid transparent;
+    border-radius: 12px; /* حواف دائرية جميلة للمربع بالكامل */
+    padding: 6px; /* مسافة داخلية صغيرة لإعطاء مدى للتوهج والحواف */
+    transition: all 0.4s ease-in-out !important;
+    background-color: transparent;
+}
+
+/* تأثير مرور الماوس (Hover) على المربع في الوضع الفاتح الافتراضي */
+.story-image-box:hover,
+.member-img-box:hover {
+    transform: translateY(-5px) !important; /* رفع المربع بالكامل بشكل تفاعلي سلس */
+    border-color: #8c6f55 !important; /* حواف ملونة بلون الهوية البني الدافئ */
+    box-shadow: 0 10px 25px rgba(140, 111, 85, 0.3), 
+                0 0 15px rgba(140, 111, 85, 0.2) !important; /* توهج خارجي مضيء ومتناسق */
+}
+
+/* تأثير مرور الماوس (Hover) مخصص للوضع الداكن (Dark Mode) */
+body.dark-mode .story-image-box:hover,
+body.dark-mode .member-img-box:hover {
+    border-color: #ebdcc9 !important; /* حواف بيج عاجية مضيئة تناسب التصميم الداكن */
+    box-shadow: 0 10px 30px rgba(235, 220, 201, 0.4), 
+                0 0 20px rgba(235, 220, 201, 0.3) !important; /* توهج ناعم فخم يضيء المربع في الظلام */
+}
+
+/* لضمان تناسق الصورة الداخلية وعدم خروجها عن حواف المربع المضيء */
+.story-image-box img,
+.member-img-box img {
+    border-radius: 8px !important;
+    display: block;
+    width: 100%;
+    height: auto;
+}
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="top-bar">
+            <div class="user-actions">
+            </div>
+
+            <div class="search-container-spacer"></div>
+
+            <div class="logo-container">
+                <a href="homepage.html">
+                    <img src="الشعار-removebg-preview.png" alt="شعار موسيقاتي" class="main-logo">
+                </a>
+            </div>
+        </div>
+
+        <nav class="nav-bar">
+            <ul>
+                <li><a href="homepage.html"><i class="fa-solid fa-house"></i> الصفحة الرئيسية</a></li>
+                <li><a href="storepage.html">المتجر</a></li>
+                <li><a href="gifts.html">الهدايا</a></li>
+                <li><a href="offers.html">العروض الخاصة</a></li>
+                <li><a href="about.html" class="active-link">من نحن</a></li>
+                <li><a href="contact.html">تواصل معنا</a></li>
+                <li><a href="accessibility.html"><i class="fa-universal-access fa-solid"></i> إمكانية الوصول</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="about-container">
+        
+        <section class="about-hero">
+            <h1>موسيقاتي.. نغمتك تبدأ من هنا، وشغف الموسيقى يجمعنا في كل أنحاء الأردن</h1>
+        </section>
+
+        <section class="story-section">
+            <div class="story-text">
+                <h2>قصة تأسيسنا: من قلب الشغف الأردني</h2>
+                <p>بدأت رحلة (موسيقاتي) من شغف عميق بالموسيقى، بعدما لاحظنا صعوبة وصول الفنانين والمبتدئين في الأردن إلى آلات موسيقية أصلية وعالية الجودة بأسعار عادلة، مع غياب الدعم الفني المتخصص.</p>
+                <p>ومن هنا، قررنا عام 2024 إطلاق منصة رقمية متكاملة تجمع أفضل الآلات والملحقات العالمية، لتصل بأمان إلى باب بيتك في كافة أنحاء المملكة، ونكون رفقاء دربك في كل نغمة تعزفها.</p>
+            </div>
+            <div class="story-image-box">
+                <img src="صورة وسط الصفحة.png" alt="شغف الموسيقى في الأردن">
+            </div>
+        </section>
+
+        <div class="vision-mission-title">
+            رؤيتنا ورسالتنا : التزامنا نحو عازفينا
+        </div>
+
+        <section class="custom-cards-section-clean">
+            <div class="info-card">
+                <h3>الرسالة</h3>
+                <p>توفير آلات موسيقية ممتازة مع دعم كامل لكل عازف أردني، لتعزيز الثقافة الموسيقية في المملكة.</p>
+            </div>
+            <div class="info-card">
+                <h3>الرؤية</h3>
+                <p>أن نصبح الوجهة الأولى والمعلومة لكل محبي الموسيقى في المملكة . من الهواة والمحترفين .</p>
+            </div>
+        </section>
+
+        <section class="team-section">
+            <h2 class="team-title">فريق متجر موسيقاتي</h2>
+            <div class="team-grid">
+                
+                <div class="team-member">
+                    <div class="member-img-box">
+                        <img src="رشيد قشوع.png" alt="رشيد قشوع">
+                    </div>
+                    <h4>رشيد قشوع</h4>
+                    <p>مؤسس موسيقاتي</p>
+                </div>
+
+                <div class="team-member">
+                    <div class="member-img-box">
+                        <img src="فاطمة عبدالله.png" alt="فاطمة عبدالله">
+                    </div>
+                    <h4>فاطمة عبدالله</h4>
+                    <p>إختصاص دعم فني</p>
+                </div>
+
+                <div class="team-member">
+                    <div class="member-img-box">
+                        <img src="أحمد الكركي.png" alt="أحمد الكركي">
+                    </div>
+                    <h4>أحمد الكركي</h4>
+                    <p>مسؤول فحص الجودة والصيانة</p>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            
+            <div class="footer-section contact-section">
+                <h3> : Contact Us </h3>
+                <div class="contact-item">
+                    <i class="fa-solid fa-phone"></i>
+                    <span dir="ltr">+962 6 555 1234</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fa-solid fa-mobile-screen-button"></i>
+                    <span dir="ltr">+962 79 7370514</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fa-solid fa-envelope"></i>
+                    <span>info@musiqati.jo</span>
+                </div>
+            </div>
+
+            <div class="footer-section follow-section">
+                <h3> : Follow us </h3>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/share/14dfKyEsQWg/" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/mosiqati_?igsh=MWhpMm95YjAwc2gzOA==" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://youtube.com/@mosiqati-hk1kc?si=EqwQyf98RR30Ucf0" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+
+        </div>
+        
+        <div class="copyright-container">
+            <p class="copyright-text">جميع الحقوق محفوظة لـ متجر الموسيقاتي © 2026</p>
+        </div>
+    </footer>
+<script src="script.js"></script>
+</body>
+</html>

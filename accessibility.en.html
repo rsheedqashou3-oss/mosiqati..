@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Musiqati - Accessibility</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* ==========================================================================
+           كود حماية وتثبيت الاتجاه المصلح لمنع التعارض مع ملف style.css الإجباري
+           ========================================================================== */
+        html, body {
+            direction: ltr !important;
+            text-align: left !important;
+        }
+        .nav-bar ul, .top-bar, .user-actions {
+            direction: ltr !important;
+            flex-direction: row !important;
+        }
+        main, section, div, p, h1, button, span {
+            text-align: left !important;
+        }
+        /* تثبيت عنوان الكارد الرئيسي في المنتصف */
+        .accessibility-card h1 {
+            text-align: center !important;
+        }
+
+        /* ==========================================================================
+           تنسيقات الصفحة الأصلية المستقرة
+           ========================================================================== */
+        .accessibility-wrapper {
+            padding: 60px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 65vh;
+        }
+        .accessibility-card {
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(61, 42, 28, 0.08);
+            border: 1px solid #ebdcc9;
+            padding: 45px 35px;
+            max-width: 750px;
+            width: 100%;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        .accessibility-card h1 {
+            color: #3d2a1c;
+            font-size: 20px;
+            margin-bottom: 40px;
+            font-weight: 900;
+            font-family: 'Cairo', sans-serif;
+            position: relative;
+        }
+        .control-group-box {
+            margin-bottom: 30px;
+            padding: 24px;
+            background-color: #fdfbf7;
+            border-radius: 14px;
+            border: 1px solid #ebdcc9;
+            text-align: left;
+            transition: all 0.3s ease;
+        }
+        .control-group-box:hover {
+            border-color: #8c6f55;
+            background-color: #ffffff;
+            box-shadow: 0 0 15px rgba(140, 111, 85, 0.25);
+            transform: translateY(-2px);
+        }
+        .group-box-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #3d2a1c;
+            margin-bottom: 20px;
+            font-family: 'Cairo', sans-serif;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .group-box-title i {
+            color: #8c6f55;
+            font-size: 1.25rem !important;
+        }
+        .buttons-flex-layout {
+            display: flex;
+            gap: 12px;
+            flex-wrap: nowrap;
+            justify-content: space-between;
+        }
+        .accessibility-action-btn {
+            flex: 1;
+            min-width: 0;
+            white-space: nowrap;
+            padding: 12px 10px;
+            border: 2px solid #8c6f55;
+            background-color: #ffffff;
+            color: #3d2a1c;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 0.95rem;
+            font-family: 'Cairo', sans-serif;
+            transition: all 0.25s ease-in-out;
+        }
+        .accessibility-action-btn:hover {
+            background-color: #8c6f55;
+            color: #ffffff !important;
+            border-color: #8c6f55;
+            box-shadow: 0 4px 12px rgba(140, 111, 85, 0.2);
+        }
+        .active-setting {
+            background-color: #3d2a1c !important;
+            color: #ffffff !important;
+            border-color: #3d2a1c !important;
+            box-shadow: 0 4px 10px rgba(61, 42, 28, 0.3) !important;
+        }
+        body.dark-mode .accessibility-card {
+            background: #26201b !important;
+            border-color: #3d2a1c !important;
+        }
+        body.dark-mode .accessibility-card h1 {
+            color: #ffffff !important;
+        }
+        body.dark-mode .control-group-box {
+            background-color: #1e1915 !important;
+            border-color: #3d2a1c !important;
+        }
+        body.dark-mode .group-box-title {
+            color: #ffffff !important;
+        }
+        body.dark-mode .group-box-title i {
+            color: #ebdcc9 !important;
+        }
+        body.dark-mode .accessibility-action-btn {
+            background-color: #2e2620 !important;
+            color: #ebdcc9 !important;
+            border-color: #4a3b2c !important;
+        }
+        body.dark-mode .accessibility-action-btn:hover {
+            background-color: #8c6f55 !important;
+            color: #ffffff !important;
+            border-color: #8c6f55 !important;
+        }
+        body.dark-mode .active-setting {
+            background-color: #ebdcc9 !important;
+            color: #1a1613 !important;
+            border-color: #ebdcc9 !important;
+        }
+        body.dark-mode .main-logo {
+            filter: invert(1) brightness(2);
+        }
+        @media (max-width: 600px) {
+            .buttons-flex-layout {
+                flex-wrap: wrap;
+            }
+            .accessibility-action-btn {
+                flex: 1 1 45%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="top-bar">
+            <div class="user-actions">
+            </div>          
+            <div class="logo-container">
+                <a href="homepage.en.html">
+                    <img src="الشعار-removebg-preview.png" alt="Musiqati Logo" class="main-logo">
+                </a>
+            </div>
+        </div>
+
+        <nav class="nav-bar">
+            <ul>
+                <li><a href="homepage.en.html"><i class="fa-solid fa-house"></i> Home</a></li>
+                <li><a href="storepage.en.html">Store</a></li>
+                <li><a href="gifts.en.html">Gifts</a></li>
+                <li><a href="offers.en.html">Special Offers</a></li>
+                <li><a href="about.en.html">About Us</a></li>
+                <li><a href="contact.en.html">Contact Us</a></li>
+                <li><a href="accessibility.en.html" class="active-link"><i class="fa-solid fa-universal-access"></i> Accessibility</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="accessibility-wrapper">
+        <section class="accessibility-card">
+            <h1>Accessibility & User Experience Settings</h1>
+
+            <div class="control-group-box">
+                <div class="group-box-title"><i class="fa-solid fa-magnifying-glass-plus"></i> Website Text Font Size:</div>
+                <div class="buttons-flex-layout">
+                    <button class="accessibility-action-btn font-btn" data-size="font-normal">Normal (Default)</button>
+                    <button class="accessibility-action-btn font-btn" data-size="font-medium">Medium (+15%)</button>
+                    <button class="accessibility-action-btn font-btn" data-size="font-large">Large (+30%)</button>
+                    <button class="accessibility-action-btn font-btn" data-size="font-xlarge">Extra Large (+50%)</button>
+                </div>
+            </div>
+
+            <div class="control-group-box">
+                <div class="group-box-title"><i class="fa-solid fa-palette"></i> Store Theme & Screen Colors:</div>
+                <div class="buttons-flex-layout">
+                    <button class="accessibility-action-btn theme-btn" data-theme="light-mode">Light Mode (Classic)</button>
+                    <button class="accessibility-action-btn theme-btn" data-theme="dark-mode">Dark Mode (Eye Comfort)</button>
+                </div>
+            </div>
+
+            <div class="control-group-box">
+                <div class="group-box-title"><i class="fa-solid fa-language"></i> Display Interface Language:</div>
+                <div class="buttons-flex-layout">
+                    <button
+    id="ar-lang-btn"
+    class="accessibility-action-btn lang-btn"
+    data-lang="ar"
+    onclick="location.href='accessibility.html'">
+    العربية (الأصلية)
+</button>
+
+<button
+    id="en-lang-btn"
+    class="accessibility-action-btn lang-btn"
+    data-lang="en"
+    onclick="location.href='accessibility.en.html'">
+    English (الإنجليزية)
+</button>
+                </div>
+                
+            </div>
+            <div class="control-group-box">
+    <div class="group-box-title">
+        <i class="fa-solid fa-volume-high"></i>
+        smart text reader
+    </div>
+
+    <div class="buttons-flex-layout">
+        <button class="accessibility-action-btn tts-btn" data-tts="on">
+turn on the reader
+        </button>
+
+        <button class="accessibility-action-btn tts-btn" data-tts="off">
+            turn off the reader
+        </button>
+    </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-section contact-section">
+                <h3>Contact Us:</h3>
+                <div class="contact-item">
+                    <i class="fa-solid fa-phone"></i>
+                    <span>+962 6 555 1234</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fa-solid fa-mobile-screen-button"></i>
+                    <span>+962 79 7370514</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fa-solid fa-envelope"></i>
+                    <span>info@musiqati.jo</span>
+                </div>
+            </div>
+            <div class="footer-section follow-section">
+                <h3>Follow Us:</h3>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/share/14dfKyEsQWg/" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/mosiqati_?igsh=MWhpMm95YjAwc2gzOA==" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://youtube.com/@mosiqati-hk1kc?si=EqwQyf98RR30Ucf0" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright-container">
+            <p class="copyright-text">All Rights Reserved to Musiqati Store © 2026</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                const enBtn = document.getElementById('en-lang-btn');
+                const arBtn = document.getElementById('ar-lang-btn');
+                if (enBtn && arBtn) {
+                    arBtn.classList.remove('active-setting');
+                    enBtn.classList.add('active-setting');
+                }
+            }, 50);
+        });
+    </script>
+</body>
+</html>

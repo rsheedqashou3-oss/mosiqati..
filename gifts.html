@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>متجر موسيقاتي - الهدايا</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        .error-message {
+            display: none;
+            background: #fff3e0;
+            color: #e65100;
+            border: 1px solid #ffb74d;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 14px;
+            margin-top: -5px;
+            margin-bottom: 10px;
+            text-align: right;
+            font-family: 'Cairo', sans-serif;
+            align-items: center;
+        }
+
+        .error-icon-box {
+            display: inline-flex;
+            background: #ff9800;
+            color: #fff;
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+            align-items: center;
+            justify-content: center;
+            margin-left: 8px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .cart-modal form input:focus {
+            outline: none;
+            border-color: #8e6f54 !important;
+            box-shadow: 0 0 8px rgba(142, 111, 84, 0.4) !important;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .cart-modal form input {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            transition: all 0.3s ease-in-out;
+            margin-bottom: 5px !important;
+        }
+
+        .cod-badge {
+            background-color: #fcf8e3;
+            color: #8a6d3b;
+            border: 1px dashed #faebcc;
+            padding: 8px;
+            border-radius: 6px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        /* ==========================================================================
+            التعديلات الإضافية الآمنة لشارات الخصم والعناوين والوضع الداكن لصفحة الهدايا
+            ========================================================================== */
+
+        /* 1. جعل كروت المنتجات تسمح ببروز الشارة للخارج دون أن تُقص أطرافها */
+        .product-card {
+            position: relative !important;
+            overflow: visible !important;
+        }
+
+        /* 2. إعادة هندسة شارة الخصم لتكون في الزاوية اليسرى العلوية ونصفها بارز خارج الكرت */
+        .discount-badge {
+            position: absolute !important;
+            top: -12px !important;       /* رفع الشارة للأعلى لتبرز خارج الكرت */
+            left: -12px !important;      /* إزاحة الشارة لليسار لتبرز خارج الكرت */
+            right: auto !important;      /* إلغاء أي إزاحات جهة اليمين */
+            background-color: #e74c3c !important; /* لون أحمر فخم وجذاب متناسق */
+            color: #ffffff !important;
+            padding: 6px 14px !important;
+            font-size: 0.85rem !important;
+            font-weight: 700 !important;
+            border-radius: 8px !important;
+            box-shadow: -3px 3px 10px rgba(0, 0, 0, 0.2) !important; /* ظل يعطي عمقاً رائعاً للبروز */
+            z-index: 10 !important;
+            white-space: nowrap !important;
+        }
+
+        /* 3. إصلاح مشكلة اختفاء الجملة الترحيبية لصفحة الهدايا في الوضع الداكن */
+        body.dark-mode .gifts-welcome-title {
+            color: #ffffff !important;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        /* 4. ضمان ظهور الشعار بوضوح فخم في الوضع الداكن */
+        body.dark-mode .main-logo {
+            filter: invert(1) brightness(2);
+        }
+
+        /* 5. التعديل الذهبي: تثبيت اللون الأبيض لأيقونة السلة داخل أزرار الإضافة في الوضع الداكن */
+        body.dark-mode .add-to-cart-btn .btn-cart-icon,
+        body.dark-mode .super-add-to-cart-btn .btn-cart-icon {
+            color: #000000 !important;
+            opacity: 1 !important;
+        }
+        .discount-badge {
+            /* جعل الشارة تنمو وتتجه نحو اليمين داخل الكرت عند تكبير الخط */
+            width: auto !important; 
+            max-width: 85% !important; /* يمنعها من عبور الكرت بالكامل وتغطية المساحات الأخرى */
+            
+            /* تطبيق الميلان الخفيف جداً والأنيق لجهة اليسار */
+            transform: rotate(-4deg) !important; 
+            transform-origin: top left !important; /* التثبيت يبدأ من نقطة البروز في الأعلى يسار */
+            
+            /* تقليل شدة الإضاءة وجعل التوهج هادئاً وناعماً جداً ومناسباً للعين */
+            box-shadow: -3px 3px 8px rgba(0, 0, 0, 0.15), 0 0 6px rgba(231, 76, 60, 0.4) !important;
+            
+            /* حماية الشارة من التداخل مع صورة المنتج وتحتها */
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+        }
+
+        /* حماية صورة المنتج لتبقى دائماً خلف الشارة وتحتها دون أي تشويه أو تداخل */
+        .product-card img, .product-image {
+            z-index: 1 !important;
+            position: relative !important;
+        }
+
+        /* الحفاظ على النص أبيض ناصع ومضيء بهدوء في الوضع الداكن */
+        body.dark-mode .discount-badge {
+            background-color: #e74c3c !important;
+            color: #ffffff !important;
+            box-shadow: -3px 3px 10px rgba(0, 0, 0, 0.4), 0 0 8px rgba(231, 76, 60, 0.5) !important;
+        }
+.product-header-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="top-bar">
+            <div class="user-actions">
+                <div class="cart-btn" onclick="openCart()" style="cursor: pointer;">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span>السلة</span>
+                    <span id="cart-count">0</span>
+                </div>
+            </div>
+
+            <div class="search-container">
+                <input type="text" id="search-input" placeholder="ابحث عن هديتك الموسيقية...">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            </div>
+
+            <div class="logo-container">
+                <a href="homepage.html">
+                    <img src="الشعار-removebg-preview.png" alt="شعار موسيقاتي" class="main-logo">
+                </a>
+            </div>
+        </div>
+
+        <nav class="nav-bar">
+            <ul>
+                <li><a href="homepage.html"><i class="fa-solid fa-house"></i> الصفحة الرئيسية</a></li>
+                <li><a href="storepage.html">المتجر</a></li>
+                <li><a href="#" class="active-link">الهدايا</a></li>
+                <li><a href="offers.html">العروض الخاصة</a></li>
+                <li><a href="about.html">من نحن</a></li>
+                <li><a href="contact.html">تواصل معنا</a></li>
+                <li><a href="accessibility.html"><i class="fa-solid fa-universal-access"></i> إمكانية الوصول</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="gifts-welcome-title">
+        الهدايا نغمات لا تُنسى من الحب 🎁
+    </div>
+
+    <main class="products-container">
+        <div class="product-card">
+    <span class="discount-badge">خصم 25%</span>
+
+    <div class="product-header-wrapper">
+        <h3 class="product-title">كوبون دروس عود</h3>
+    </div>
+            <div class="price-wrapper" style="margin-bottom: 10px;">
+                <span class="old-price" style="text-decoration: line-through; color: #888; margin-left: 10px;">65 د.أ</span>
+                <span class="product-price" style="font-weight: bold; color: #ff6b00;">48 د.أ</span>
+            </div>
+            <div class="product-img-box"><img src="كوبون دروس عود.png" alt="كوبون دروس عود"></div>
+            <button class="add-to-cart-btn" onclick="addToCart('كوبون دروس عود', 48, 'كوبون دروس عود.png')">
+                <i class="fa-solid fa-cart-shopping btn-cart-icon"></i> <span>إضافة الى السلة</span>
+            </button>
+        </div>
+
+        <div class="product-card">
+            <div class="product-header-wrapper">
+    <h3 class="product-title">مجموعة كتب تعليم موسيقية</h3>
+</div>
+            <p class="product-price">35 د.أ</p>
+            <div class="product-img-box"><img src="مجموعة كتب تعليم موسيقية .png" alt="مجموعة كتب تعليم موسيقية"></div>
+            <button class="add-to-cart-btn" onclick="addToCart('مجموعة كتب تعليم موسيقية', 35, 'مجموعة كتب تعليم موسيقية .png')">
+                <i class="fa-solid fa-cart-shopping btn-cart-icon"></i> <span>إضافة الى السلة</span>
+            </button>
+        </div>
+
+        <div class="product-card">
+            <div class="product-header-wrapper">
+    <h3 class="product-title">طقم أوتار جيتار كلاسيكي</h3>
+</div>
+            <p class="product-price">15 د.أ</p>
+            <div class="product-img-box"><img src="طقم اسلاك جيتار كلاسيكي.png" alt="طقم أوتار جيتار كلاسيكي"></div>
+            <button class="add-to-cart-btn" onclick="addToCart('طقم أوتار جيتار كلاسيكي', 15, 'طقم اسلاك جيتار كلاسيكي.png')">
+                <i class="fa-solid fa-cart-shopping btn-cart-icon"></i> <span>إضافة الى السلة</span>
+            </button>
+        </div>
+
+        <div class="product-card">
+            <div class="product-header-wrapper">
+    <h3 class="product-title">حقيبة مبطنة للعود (فاخرة)</h3>
+</div>
+            <p class="product-price">85 د.أ</p>
+            <div class="product-img-box"><img src="حقيبة مبطنة للعود (فاخرة).png" alt="حقيبة مبطنة للعود"></div>
+            <button class="add-to-cart-btn" onclick="addToCart('حقيبة مبطنة للعود (فاخرة)', 85, 'حقيبة مبطنة للعود (فاخرة).png')">
+                <i class="fa-solid fa-cart-shopping btn-cart-icon"></i> <span>إضافة الى السلة</span>
+            </button>
+        </div>
+
+        <div class="product-card">
+           <div class="product-header-wrapper">
+    <h3 class="product-title">مجموعة اكسسوارات للاوتار</h3>
+</div>
+            <p class="product-price">42 د.أ</p>
+            <div class="product-img-box"><img src="مجموعة اكسسورات للاوتار.png" alt="مجموعة اكسسوارات للاوتار"></div>
+            <button class="add-to-cart-btn" onclick="addToCart('مجموعة اكسسوارات للاوتار', 42, 'مجموعة اكسسورات للاوتار.png')">
+                <i class="fa-solid fa-cart-shopping btn-cart-icon"></i> <span>إضافة الى السلة</span>
+            </button>
+        </div>
+
+        <div class="product-card">
+            <div class="product-header-wrapper">
+    <h3 class="product-title">مجموعة اكسسوارات للاوتار</h3>
+</div>
+            <p class="product-price">28 د.أ</p>
+            <div class="product-img-box"><img src="مصحح دقيق لنغمة الالة.png" alt="مصحح دقيق لنغمة الآلة"></div>
+            <button class="add-to-cart-btn" onclick="addToCart('مصحح دقيق لنغمة الآلة', 28, 'مصحح دقيق لنغمة الالة.png')">
+                <i class="fa-solid fa-cart-shopping btn-cart-icon"></i> <span>إضافة الى السلة</span>
+            </button>
+        </div>
+
+        <div class="product-card">
+            <span class="discount-badge">خصم 5%</span>
+           <div class="product-header-wrapper">
+    <h3 class="product-title">كوبون تسجيل استوديو (جلسة واحدة)</h3>
+</div>
+            <div class="price-wrapper" style="margin-bottom: 10px;">
+                <span class="old-price" style="text-decoration: line-through; color: #888; margin-left: 10px;">100 د.أ</span>
+                <span class="product-price" style="font-weight: bold; color: #ff6b00;">95 د.أ</span>
+            </div>
+            <div class="product-img-box"><img src="كوبون تسجيل استديو.png" alt="كوبون تسجيل استوديو"></div>
+            <button class="add-to-cart-btn" onclick="addToCart('كوبون تسجيل استوديو', 95, 'كوبون تسجيل استديو.png')">
+                <i class="fa-solid fa-cart-shopping btn-cart-icon"></i> <span>إضافة الى السلة</span>
+            </button>
+        </div>
+
+        <div class="product-card">
+            <div class="product-header-wrapper">
+    <h3 class="product-title">حامل آلات مخصص</h3>
+</div>
+            <p class="product-price">43 د.أ</p>
+            <div class="product-img-box"><img src="حامل الات مخصص.png" alt="حامل آلات مخصص"></div>
+            <button class="add-to-cart-btn" onclick="addToCart('حامل آلات مخصص', 43, 'حامل الات مخصص.png')">
+                <i class="fa-solid fa-cart-shopping btn-cart-icon"></i> <span>إضافة الى السلة</span>
+            </button>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-section contact-section">
+                <h3> : Contact Us </h3>
+                <div class="contact-item"><i class="fa-solid fa-phone"></i> <span> 1234 555 6 962+ </span></div>
+                <div class="contact-item"><i class="fa-solid fa-mobile-screen-button"></i> <span>  7370514 79 962+</span></div>
+                <div class="contact-item"><i class="fa-solid fa-envelope"></i> <span>info@musiqati.jo</span></div>
+            </div>
+            <div class="footer-section follow-section">
+                <h3>: Follow Us</h3>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/share/14dfKyEsQWg/" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/mosiqati_?igsh=MWhpMm95YjAwc2gzOA==" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://youtube.com/@mosiqati-hk1kc?si=EqwQyf98RR30Ucf0" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright-container">
+            <p class="copyright-text">جميع الحقوق محفوظة لـ متجر الموسيقاتي © 2026</p>
+        </div>
+    </footer>
+
+    <div id="cart-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:9999; align-items:center; justify-content:center;">
+        <div class="cart-modal" style="background:#fff; padding:20px; border-radius:15px; width:90%; max-width:500px; text-align:center; position:relative; max-height:80vh; overflow-y:auto;">
+            
+            <div id="cart-content-area" style="display:block;">
+                <button onclick="document.getElementById('cart-modal').style.display='none'; document.body.style.overflow='auto';" style="float:left; cursor:pointer; background:none; border:none; font-size:24px;">✖</button>
+                <h2 id="modal-title">سلة المشتريات</h2>
+                <div id="cart-items" style="text-align:right;"></div>
+                <div style="margin:20px 0; font-weight:bold;">
+                    <span>المجموع الكلي:</span> <span id="total-price">0 د.أ</span>
+                </div>
+                
+                <div id="error-empty-cart" class="error-message" style="margin-bottom: 15px;">
+                    <span class="error-icon-box">!</span><span>عميلنا الرائع! قبل تأكيد الطلب يجب عليك وضع منتجات في السلة.</span>
+                </div>
+                
+                 <button id="checkout-btn" onclick="showCheckout()" style="width:100%; padding:10px; background:#8e6f54; color:#fff; border:none; border-radius:8px; cursor:pointer;">  تأكيد الطلب</button>
+            </div>
+
+            <form id="checkout-form" style="display:none; text-align:right;" onsubmit="confirmOrder(event)" novalidate>
+                <button type="button" onclick="backToCart()" style="float:right; cursor:pointer; background:none; border:none; font-size:20px;">
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+                <h3 style="clear:both; margin-bottom: 5px;">معلومات التوصيل</h3>
+                
+                <div class="cod-badge">
+                    <i class="fa-solid fa-hand-holding-dollar"></i> طريقة الدفع المتاحة: الدفع عند الاستلام فقط
+                </div>
+                
+                <input type="text" id="cust-name" placeholder="الاسم الكامل" style="width:100%; padding:10px;">
+                <div id="error-name" class="error-message">
+                    <span class="error-icon-box">!</span><span>يُرجى ملء هذا الحقل.</span>
+                </div>
+
+                <input type="tel" id="cust-phone" placeholder="رقم الهاتف (+962...)" style="width:100%; padding:10px;">
+                <div id="error-phone" class="error-message">
+                    <span class="error-icon-box">!</span><span>يرجى تعبئة جميع الخانات المطلوبة لإتمام الطلب!</span>
+                </div>
+
+                <input type="text" id="cust-address" placeholder="عنوان التوصيل" style="width:100%; padding:10px;">
+                <div id="error-address" class="error-message">
+                    <span class="error-icon-box">!</span><span>يُرجى ملء هذا الحقل.</span>
+                </div>
+
+                <button type="submit" style="width:100%; padding:10px; background:#27ae60; color:#fff; border:none; border-radius:8px; cursor:pointer; font-weight: bold;">
+                    إرسال الطلب الآن (الدفع عند الاستلام)
+                </button>
+            </form>
+
+            <div id="success-msg" style="display:none; padding:40px 20px;">
+                <div style="font-size: 60px; color: #27ae60; margin-bottom: 20px;"><i class="fa-solid fa-circle-check"></i></div>
+                <h2 style="font-size: 24px; color: #333; font-weight: 700;">تم إرسال طلبك بنجاح!</h2>
+                <p style="font-size: 18px; color: #000000; margin-top: 5px; margin-bottom: 5px;">سوف يتم شحنه فوراً.</p>
+                <p style="font-size: 16px; color: #000000; font-weight: 600; margin-bottom: 25px;">شكراً لاختيارك متجر موسيقاتي 🤎</p>
+                <button onclick="closeAll()" style="width:100%; padding:12px; background:#333; color:#fff; border:none; border-radius:8px; cursor:pointer;">إغلاق</button>
+            </div>
+        </div>
+    </div>
+    <script src="cart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
